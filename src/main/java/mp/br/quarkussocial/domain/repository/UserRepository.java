@@ -8,4 +8,6 @@ import mp.br.quarkussocial.domain.model.User;
 public class UserRepository implements PanacheRepository<User> {
 
 
+
+
 }

@@ -19,12 +19,12 @@ import org.jboss.resteasy.annotations.jaxrs.PathParam;
 @Consumes(MediaType.APPLICATION_JSON)
 public class UserResource {
 
-    private UserRepository userRepósitory;
+    private UserRepository userRepository;
     private Validator validator;
 
     @Inject
-    public UserResource(UserRepository userRepósitory, Validator validator){
-        this.userRepósitory = userRepósitory;
+    public UserResource(UserRepository userRepository, Validator validator){
+        this.userRepository = userRepository;
         this.validator = validator;
     }
 
@@ -36,7 +36,7 @@ public class UserResource {
         user.setNome(request.getNome());
         user.setIdade(request.getIdade());
 
-        userRepósitory.persist(user);
+        userRepository.persist(user);
         //user.persist();
         //user.delete();
 
@@ -48,7 +48,7 @@ public class UserResource {
 
     @GET
     public Response listAllUsers(){
-        PanacheQuery<User> query = userRepósitory.findAll();
+        PanacheQuery<User> query = userRepository.findAll();
         return Response.ok(query.list()).build();
     }
 
@@ -56,10 +56,10 @@ public class UserResource {
     @Path("{id}")
     @Transactional
     public Response deleteUser(@PathParam("id") Long id){
-        User user = userRepósitory.findById(id);
+        User user = userRepository.findById(id);
 
         if(user != null){
-            userRepósitory.delete(user);
+            userRepository.delete(user);
             return Response.ok().build();
         }
 
@@ -70,7 +70,7 @@ public class UserResource {
     @Path("{id}")
     @Transactional
     public Response updateUser(@PathParam("id") Long id, CreateUserRequest userData){
-        User user = userRepósitory.findById(id);
+        User user = userRepository.findById(id);
 
         if(user != null){
             user.setNome(userData.getNome());
