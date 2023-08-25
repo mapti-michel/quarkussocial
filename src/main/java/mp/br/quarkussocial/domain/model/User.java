@@ -1,22 +1,23 @@
 package mp.br.quarkussocial.domain.model;
 
 import io.quarkus.hibernate.orm.panache.PanacheEntityBase;
+
 import javax.persistence.*;
 import java.util.Objects;
 
 @Entity
-@Table(name = "users") // Opcional
-public class User extends PanacheEntityBase{
+@Table(schema = "quarkussocial", name = "tbluser") //Se eu deixar o table vazio, ele entenderá que o nome da tabela é User
+public class User extends PanacheEntityBase {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
     private Long id;
 
     @Column(name = "nome")
     private String nome;
-
     @Column(name = "idade")
-    private int idade;
+    private Integer idade;
 
     public Long getId() {
         return id;
@@ -46,8 +47,8 @@ public class User extends PanacheEntityBase{
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        User that = (User) o;
-        return idade == that.idade && Objects.equals(id, that.id) && Objects.equals(nome, that.nome);
+        User user = (User) o;
+        return id.equals(user.id) && nome.equals(user.nome) && idade.equals(user.idade);
     }
 
     @Override
