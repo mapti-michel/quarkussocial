@@ -16,6 +16,7 @@ public class User extends PanacheEntityBase {
 
     @Column(name = "nome")
     private String nome;
+
     @Column(name = "idade")
     private Integer idade;
 
