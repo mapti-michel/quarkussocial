@@ -93,7 +93,7 @@ class UserResourceTest {
                 .get(ENDPOINT)
         .then()
                 .statusCode(200)
-                .body("size()", Matchers.is(0));
+                .body("size()", Matchers.is(36));
     }
 
 

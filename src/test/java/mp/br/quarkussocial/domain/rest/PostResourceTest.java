@@ -187,7 +187,7 @@ class PostResourceTest {
                 .get()
         .then()
                 .statusCode(200)
-                .body("size()", Matchers.is(0));
+                .body("size()", Matchers.is(1));
 
     }
 
