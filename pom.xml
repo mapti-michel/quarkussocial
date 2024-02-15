@@ -97,6 +97,11 @@
       <version>RELEASE</version>
       <scope>compile</scope>
     </dependency>
+      <dependency>
+          <groupId>javax.enterprise</groupId>
+          <artifactId>cdi-api</artifactId>
+          <version>1.0</version>
+      </dependency>
   </dependencies>
   <build>
     <plugins>
